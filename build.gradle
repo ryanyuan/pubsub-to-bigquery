@@ -25,7 +25,7 @@ run {
             "--zone=us-central1-a",
             "--stagingLocation=${staging_location}",
             "--tempLocation=${temp_location}",
-            "--pubSubTopic=${pubsub_topic}",
+            "--pubSubSubscription=${pubsub_subscription}",
             "--bigQueryDataset=${bigquery_dataset}",
             "--bigQueryTable=${bigquery_table}"
     ]

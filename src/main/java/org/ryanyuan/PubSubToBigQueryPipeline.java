@@ -18,11 +18,11 @@ import static org.apache.beam.sdk.io.gcp.bigquery.BigQueryIO.Write.CreateDisposi
 import static org.apache.beam.sdk.io.gcp.bigquery.BigQueryIO.Write.WriteDisposition.WRITE_APPEND;
 
 /**
- * Dataflow streaming pipeline to read messages from PubSub topic and write the
+ * Dataflow streaming pipeline to read messages from PubSub subscription and write the
  * payload to BigQuery
  */
 public class PubSubToBigQueryPipeline {
-    private static final String TOPIC = "projects/%s/topics/%s";
+    private static final String SUBSCRIPTION = "projects/%s/subscriptions/%s";
     private static final String BIGQUERY_DATASET_TABLE = "%s:%s.%s";
 
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class PubSubToBigQueryPipeline {
         Pipeline pipeline = Pipeline.create(options);
 
         PCollection<PubsubMessage> messages = pipeline
-                .apply("GetDataFromPubSub", PubsubIO.readMessagesWithAttributes().fromTopic(String.format(TOPIC, options.getProject(), options.getPubSubTopic())))
+                .apply("GetDataFromPubSub", PubsubIO.readMessagesWithAttributes().fromSubscription(String.format(SUBSCRIPTION, options.getProject(), options.getPubSubSubscription())))
                 .apply("ApplyWindow", Window.into(FixedWindows.of(Duration.standardSeconds(1))));
 
         PCollection<TableRow> rows = messages.apply("JsonToRow", new JsonMsgToTableRow());

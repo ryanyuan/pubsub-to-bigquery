@@ -5,10 +5,10 @@ import org.apache.beam.sdk.options.Default;
 import org.apache.beam.sdk.options.Description;
 
 public interface PubSubToBigQueryOptions extends DataflowPipelineOptions {
-    @Description("Pub/Sub topic name.")
-    @Default.String("topic")
-    String getPubSubTopic();
-    void setPubSubTopic(String pubSubTopic);
+    @Description("Pub/Sub subscription name.")
+    @Default.String("subscription")
+    String getPubSubSubscription();
+    void setPubSubSubscription(String pubSubSubscription);
 
     @Description("BigQuery dataset name.")
     @Default.String("dataset")
