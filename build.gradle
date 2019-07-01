@@ -25,9 +25,11 @@ run {
             "--zone=us-central1-a",
             "--stagingLocation=${staging_location}",
             "--tempLocation=${temp_location}",
-            "--pubSubSubscription=${pubsub_subscription}",
-            "--bigQueryDataset=${bigquery_dataset}",
-            "--bigQueryTable=${bigquery_table}"
+            "--useSubscription=${use_subscription}",
+            "--inputSubscription=projects/${gcp_project_id}/subscriptions/${pubsub_subscription}",
+            "--inputTopic=projects/${gcp_project_id}/topics/${pubsub_topic}",
+            "--outputTableSpec=${gcp_project_id}:${output_dataset_id}.${output_table_id}",
+            "--outputDeadletterTable=${gcp_project_id}:${deadletter_dataset_id}.${deadletter_table_id}"
     ]
 }
 
