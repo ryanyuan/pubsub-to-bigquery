@@ -45,10 +45,10 @@ public class PubSubToBigQueryPipeline {
 
         if (options.getUseSubscription()) {
             messages = pipeline
-                    .apply("Read from Pub/Sub subscription", PubsubIO.readMessagesWithAttributes().fromSubscription(options.getInputSubscription()));
+                    .apply("Read from PubSub", PubsubIO.readMessagesWithAttributes().fromSubscription(options.getInputSubscription()));
         } else {
             messages = pipeline
-                    .apply("Read from Pub/Sub topic", PubsubIO.readMessagesWithAttributes().fromTopic(options.getInputTopic()));
+                    .apply("Read from PubSub", PubsubIO.readMessagesWithAttributes().fromTopic(options.getInputTopic()));
         }
 
         messages.apply("Convert JSON to row", new JsonMsgToTableRow())
