@@ -29,7 +29,6 @@ run {
             "--inputSubscription=projects/${gcp_project_id}/subscriptions/${pubsub_subscription}",
             "--inputTopic=projects/${gcp_project_id}/topics/${pubsub_topic}",
             "--outputTableSpec=${gcp_project_id}:${output_dataset_id}.${output_table_id}",
-            "--outputDeadletterTable=${gcp_project_id}:${deadletter_dataset_id}.${deadletter_table_id}"
     ]
 }
 
