@@ -46,6 +46,7 @@ public class JsonMsgToTableRow
                             return row;
                         } catch (Exception e) {
                             e.printStackTrace();
+                            LOGGER.error(e.getMessage());
                         }
                         return row;
                     }
